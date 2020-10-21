@@ -1,6 +1,7 @@
 #include <stdlib.h> /* Needed to define exit() */
 #include <unistd.h> /* Needed for fork() and getpid() */
 #include <stdio.h> /* Needed for printf() */
+#include <sys/wait.h>
 
 int main(int argc, char **argv) {
     int pid; /* Process ID */
@@ -11,6 +12,7 @@ int main(int argc, char **argv) {
             break;
 
         default: /* A fork returns a pid to the parent */
+            wait(NULL);
             printf("I am the parents process pid=%d, child pid=%d\n", getpid(), pid);
             break;
 
