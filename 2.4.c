@@ -1,6 +1,7 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 void childTask() {
     char name[30];
@@ -8,6 +9,7 @@ void childTask() {
     printf("Enter your name: ");
     fgets(name, 30, stdin);
     printf("Your name is %s", name);
+    exit(0);
 }
 
 void parentTask() {
@@ -23,7 +25,7 @@ int main(void) {
         if(pid == 0) {
             childTask();
         }
-        else if(pid > 0) {
+        else {
             parentTask();
         }
     }
