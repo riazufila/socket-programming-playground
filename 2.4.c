@@ -19,7 +19,7 @@ void parentTask() {
 }
 
 int main(void) {
-    for(int i = 0; i < 5; i++) {
+    for(int i = 0; i < 4; i++) {
         int pid = fork();
 
         if(pid == 0) {
