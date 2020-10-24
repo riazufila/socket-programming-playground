@@ -12,10 +12,11 @@ void childTask() {
     exit(0);
 }
 
-void parentTask() {
+void parentTask(int i) {
     printf("Waiting for child process to finish...\n");
     wait(NULL);
-    printf("Job is done.\n");
+    if(i == 3)
+        printf("Job is done.\n");
 }
 
 int main(void) {
@@ -26,7 +27,7 @@ int main(void) {
             childTask();
         }
         else {
-            parentTask();
+            parentTask(i);
         }
     }
 
