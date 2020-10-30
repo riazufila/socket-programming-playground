@@ -7,7 +7,7 @@ int main(void) {
     void sig_handler(int sig);
     char s[200];
 
-    if(signal(SIGINT, sig_handler) == SIG_ERR || signal(SIGINT, sig_handler) == SIG_ERR || signal(SIGINT, sig_handler) == SIG_ERR) {
+    if(signal(SIGINT, sig_handler) == SIG_ERR || signal(SIGQUIT, sig_handler) == SIG_ERR || signal(SIGTSTP, sig_handler) == SIG_ERR) {
         perror("signal");
         exit(1);
     }
@@ -22,6 +22,7 @@ int main(void) {
 }
 
 void sig_handler(int sig) {
+    printf("%d", sig);
     if(sig == 2)
         printf("This is a special signal handler for SIGINT\n");
     else if(sig == 3)
