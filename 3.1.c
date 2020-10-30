@@ -27,6 +27,6 @@ void sig_handler(int sig) {
         printf("This is a special signal handler for SIGINT\n");
     else if(sig == 3)
         printf("This is a special signal handler for SIQUIT\n");
-    else if(sig == 24)
+    else
         printf("This is a special signal handler for SIGTSTP\n");
 }
