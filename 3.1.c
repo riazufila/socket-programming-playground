@@ -4,22 +4,10 @@
 #include <signal.h>
 
 int main(void) {
-    void sigint_handler(int sig);
-    void sigtstp_handler(int sig);
-    void sigquit_handler(int sig);
+    void sig_handler(int sig);
     char s[200];
 
-    if(signal(SIGINT, sigint_handler) == SIG_ERR) {
-        perror("signal");
-        exit(1);
-    }
-
-    if(signal(SIGTSTP, sigtstp_handler) == SIG_ERR) {
-        perror("signal");
-        exit(1);
-    }
-
-    if(signal(SIGQUIT, sigquit_handler) == SIG_ERR) {
+    if(signal(SIGINT, sig_handler) == SIG_ERR || signal(SIGINT, sig_handler) == SIG_ERR || signal(SIGINT, sig_handler) == SIG_ERR) {
         perror("signal");
         exit(1);
     }
@@ -30,18 +18,14 @@ int main(void) {
         perror("gets");
     else
         printf("You entered %s\n", s);
-
     return 0;
 }
 
-void sigint_handler(int sig) {
-    printf("This is a special signal handler for SIGINT\n");
-}
-
-void sigtstp_handler(int sig) {
-    printf("This is a special signal handler for SIGTSTP\n");
-}
-
-void sigquit_handler(int sig) {
-    printf("This is a special signal handler for SIGQUIT\n");
+void sig_handler(int sig) {
+    if(sig == 2)
+        printf("This is a special signal handler for SIGINT\n");
+    else if(sig == 3)
+        printf("This is a special signal handler for SIQUIT\n");
+    else if(sig == 24)
+        printf("This is a special signal handler for SIGTSTP\n");
 }
