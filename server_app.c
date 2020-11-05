@@ -5,7 +5,7 @@
 int main(int argc, char *argv[]) {
     int socket_desc, new_socket, c;
     struct sockaddr_in server, client;
-    char *client_reply;
+    char message[2000];
 
     // Create socket
     socket_desc = socket(AF_INET, SOCK_STREAM, 0);
@@ -15,7 +15,7 @@ int main(int argc, char *argv[]) {
     // Prepare the sockaddr_in structure
     server.sin_family = AF_INET;
     server.sin_addr.s_addr = INADDR_ANY;
-    server.sin_port = htons(8888);
+    server.sin_port = htons( 4545 );
 
     // Bind the socket
     if(bind(socket_desc, (struct sockaddr *)&server, sizeof(server)) < 0)
@@ -33,6 +33,9 @@ int main(int argc, char *argv[]) {
 
     if(new_socket < 0)
         perror("Accepting Connection Failed");
+
+    // Send data to client
+    send(new_socket, message, 2000, 0);
 
     return 0;
 }
