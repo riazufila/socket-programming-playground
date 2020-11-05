@@ -5,6 +5,7 @@
 int main(int argc, char *argv[]) {
     int socket_desc, new_socket, c;
     struct sockaddr_in server, client;
+    char *client_reply;
 
     // Create socket
     socket_desc = socket(AF_INET, SOCK_STREAM, 0);
@@ -32,6 +33,14 @@ int main(int argc, char *argv[]) {
 
     if(new_socket < 0)
         perror("Accepting Connection Failed");
+
+    if(recv(new_socket, client_reply, 2000, 0) < 0) {
+        puts("Can't get reply from client.");
+
+        return 1;
+    }
+
+    printf("Reply from client: %s\n", client_reply);
 
     return 0;
 }
