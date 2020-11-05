@@ -34,13 +34,5 @@ int main(int argc, char *argv[]) {
     if(new_socket < 0)
         perror("Accepting Connection Failed");
 
-    if(recv(new_socket, client_reply, 2000, 0) < 0) {
-        puts("Can't get reply from client.");
-
-        return 1;
-    }
-
-    printf("Reply from client: %s\n", client_reply);
-
     return 0;
 }
