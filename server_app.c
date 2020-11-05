@@ -29,13 +29,15 @@ int main(int argc, char *argv[]) {
     // Accept incoming connection
     puts("Waiting for incoming connections...");
     c = sizeof(struct sockaddr_in);
-    new_socket = accept(socket_desc, (struct sockaddr *)&client, (socklen_t*)&c);
+    while(new_socket = accept(socket_desc, (struct sockaddr *)&client, (socklen_t*)&c)) {
+        puts("Connection established.");
+
+        // Send data to client
+        send(new_socket, message, 2000, 0);
+    }
 
     if(new_socket < 0)
         perror("Accepting Connection Failed");
-
-    // Send data to client
-    send(new_socket, message, 2000, 0);
 
     return 0;
 }
