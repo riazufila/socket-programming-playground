@@ -5,7 +5,7 @@
 int main(int argc, char *argv[]) {
     int socket_desc, new_socket, c;
     struct sockaddr_in server, client;
-    char message[2000];
+    char message[2000] = "This message is from the server!";
 
     // Create socket
     socket_desc = socket(AF_INET, SOCK_STREAM, 0);

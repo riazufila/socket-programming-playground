@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
        return 1;
     }
 
-    printf("Received reply from server %s\n", server_reply);
+    printf("Received reply from server: %s\n", server_reply);
     close(socket_desc);
 
     return 0;
