@@ -20,18 +20,18 @@ int main(int argc, char *argv[]) {
 
     // Connect to remote server
     if(connect(socket_desc, (struct sockaddr *)&server, sizeof(server)) < 0) {
-        puts("Connection error.\n");
+        puts("Connection error.");
 
         return 1;
     }
 
-    puts("Connected.\n");
+    puts("Connected.");
 
     // Send some date
-    message = "I'm in.\n";
+    message = "I'm in.";
 
     if(send(socket_desc, message, strlen(message), 0) < 0) {
-        puts("Send failed.\n");
+        puts("Send failed.");
 
         return 1;
     }
@@ -40,12 +40,12 @@ int main(int argc, char *argv[]) {
 
     // Receive a reply from the server
     if(recv(socket_desc, server_reply, 2000, 0) < 0) {
-        puts("Failed to receive reply from server.\n");
+        puts("Failed to receive reply from server.");
 
         return 1;
     }
 
-    printf("Received reply from server %s", server_reply);
+    printf("Received reply from server %s\n", server_reply);
     close(socket_desc);
 
     return 0;
