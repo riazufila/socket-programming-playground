@@ -2,11 +2,12 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <string.h>
+#include <unistd.h>
 
 int main(int argc, char *argv[]) {
     int socket_desc;
     struct sockaddr_in server;
-    char *message;
+    char *message, *server_reply;
 
     // Create socket
     socket_desc = socket(AF_INET, SOCK_STREAM, 0);
@@ -36,6 +37,16 @@ int main(int argc, char *argv[]) {
     }
 
     puts("Data sent\n");
+
+    // Receive a reply from the server
+    if(recv(socket_desc, server_reply, 2000, 0) < 0) {
+        puts("Failed to receive reply from server.\n");
+
+        return 1;
+    }
+
+    printf("Received reply from server %s", server_reply);
+    close(socket_desc);
 
     return 0;
 }
