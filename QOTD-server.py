@@ -23,4 +23,5 @@ while SOCKET:
     data, addr = SOCKET.recvfrom(512)
     print("Connection established from %d" % (addr))
     # Data received is discarded
+    # Send QOTD to client
     SOCKET.sendto(MSG, (addr, PORT))
