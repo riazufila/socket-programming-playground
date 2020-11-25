@@ -3,8 +3,8 @@
 import socket
 
 PORT = 17  # Default QOTD port
-IP = "192.168.42.69"  # Server's IP
-MSG = "Let me in!"
+IP = b"192.168.42.69"  # Server's IP
+MSG = b"Let me in!"
 
 # Create socket
 SOCKET = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -14,4 +14,4 @@ SOCKET.sendto(MSG, (IP, PORT))
 
 # Receive datagram from Server
 data, addr = SOCKET.recvfrom(512)  # 512 bytes as recommended in RFC
-print("QOTD: %s" % (data))
+print("QOTD: %s" % (data.decode("utf-8")))

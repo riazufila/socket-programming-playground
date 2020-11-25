@@ -3,7 +3,7 @@
 import socket
 
 PORT = 17  # Set default port for QOTD
-MSG = 'The world is ending..'
+MSG = b"The world is ending.."
 
 # Create socket
 try:
@@ -21,7 +21,7 @@ while SOCKET:
     print("Ready to receive connections..")
     # based on RFC for QOTD Protocol the size must not exceed 512 bytes
     data, addr = SOCKET.recvfrom(512)
-    print("Connection established from %d" % (addr))
+    print("Connection established from %s" % str(addr[0]))
     # Data received is discarded
     # Send QOTD to client
-    SOCKET.sendto(MSG, (addr, PORT))
+    SOCKET.sendto(MSG, addr)
