@@ -43,7 +43,7 @@ while SOCKET:
         if day_diff_len == 1:
             MSG = f.readline().encode("utf-8")
         else:
-            i = day_differences[0]
+            i = int(day_differences[0])
             for x in range(i + 1):
                 MSG = f.readline().encode("utf-8")
 
