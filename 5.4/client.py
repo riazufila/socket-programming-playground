@@ -2,6 +2,15 @@
 
 import os
 import socket
+from Crypto.Cipher import AES
+
+
+def encryption(data):
+    obj = AES.new("key", AES.MODE_CBC, "IV456")
+    encrypted_data = obj.encrypt(data)
+
+    return encryption
+
 
 IP = "192.168.42.198"
 PORT = 4545
@@ -13,10 +22,12 @@ s.connect((IP, PORT))
 
 file = open(FILE, "rb")
 SendData = file.read(1024)
+SendData = encryption(SendData)
 
 while SendData:
     print(s.recv(1024).decode("utf-8"))
     s.send(SendData)
     SendData = file.read(1024)
+    SendData = encryption(SendData)
 
 s.close()
