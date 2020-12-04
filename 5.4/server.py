@@ -5,7 +5,7 @@ from Crypto.Cipher import AES
 
 
 def decrypt(encrypted_data):
-    obj = AES.new("This is a key123", AES.MODE_CBC, "This is an IV456")
+    obj = AES.new(b"This is a key123", AES.MODE_CBC, b"This is an IV456")
     data = obj.decrypt(encrypted_data)
 
     return data
@@ -26,7 +26,7 @@ while True:
     RecvData = conn.recv(1024)
     RecvData = decrypt(RecvData)
     while RecvData:
-        file.write(RecvData)
+        file.write(RecvData.decode("utf-8"))
         RecvData = conn.recv(1024)
         RecvData = decrypt(RecvData)
 

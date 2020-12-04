@@ -6,10 +6,10 @@ from Crypto.Cipher import AES
 
 
 def encryption(data):
-    obj = AES.new("This is a key123", AES.MODE_CBC, "This is an IV456")
+    obj = AES.new(b"1234567890123456", AES.MODE_CFB, b"0987654321098765")
     encrypted_data = obj.encrypt(data)
 
-    return encryption
+    return encrypted_data
 
 
 IP = "192.168.42.198"
@@ -22,6 +22,10 @@ s.connect((IP, PORT))
 
 file = open(FILE, "rb")
 SendData = file.read(1024)
+
+length = 16 - (len(SendData) % 16)
+SendData += bytes([length])*length
+
 SendData = encryption(SendData)
 
 while SendData:
