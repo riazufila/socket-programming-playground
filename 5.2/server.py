@@ -34,7 +34,7 @@ while True:
     Client, address = ServerSocket.accept()
     print("Connected to:" + address[0] + ":" + str(address[1]))
     start_new_thread(threaded_client, (Client, ))
-    ThreadCount = 1
     print("Thread Number:" + str(ThreadCount))
+    ThreadCount = ThreadCount + 1
 
 ServerSocket.close()
