@@ -5,7 +5,7 @@ from Crypto.Cipher import AES
 
 
 def decrypt(encrypted_data):
-    obj = AES.new("key123", AES.MODE_CBC, "IV4567")
+    obj = AES.new("This is a key123", AES.MODE_CBC, "This is an IV456")
     data = obj.decrypt(encrypted_data)
 
     return data
