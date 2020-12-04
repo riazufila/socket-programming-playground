@@ -11,8 +11,6 @@ FILESIZE = os.path.getsize(FILE)
 s = socket.socket()
 s.connect((IP, PORT))
 
-s.send("Hello server!")
-
 file = open(FILE, "rb")
 SendData = file.read(1024)
 

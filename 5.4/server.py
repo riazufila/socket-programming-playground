@@ -13,7 +13,12 @@ while True:
     conn, addr = s.accept()
     msg = "Message from server"
     conn.send(msg.encode("utf-8"))
-    data = conn.recv(1024)
 
-file.close()
-conn.close()
+    RecvData = conn.recv(1024)
+    while RecvData:
+        file.write(RecvData)
+        RecvData = conn.recv(1024)
+
+    file.close()
+    conn.close()
+    break
