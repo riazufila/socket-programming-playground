@@ -22,7 +22,7 @@ while True:
     c, addr = s.accept()
     print("Got connection from" + str(addr))
 
-    c.sendall(bytes(sendData.encoding("utf-8")))
+    c.sendall(bytes(sendData, encoding="utf-8"))
     buffer = c.recv(1024)
     print(buffer)
 
