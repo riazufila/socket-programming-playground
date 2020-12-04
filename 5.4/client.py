@@ -6,7 +6,7 @@ from Crypto.Cipher import AES
 
 
 def encryption(data):
-    obj = AES.new("key", AES.MODE_CBC, "IV456")
+    obj = AES.new("key123", AES.MODE_CBC, "IV4567")
     encrypted_data = obj.encrypt(data)
 
     return encryption
