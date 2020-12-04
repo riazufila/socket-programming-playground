@@ -5,7 +5,7 @@ import socket
 
 IP = "192.168.42.198"
 PORT = 4545
-FILE = "hello.txt"
+FILE = input("Enter the absolute path for the file to send to serve: ")
 FILESIZE = os.path.getsize(FILE)
 
 s = socket.socket()
