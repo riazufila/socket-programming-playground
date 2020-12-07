@@ -4,7 +4,7 @@ import socket
 
 
 def main():
-    """Main function"""
+    """ Main function """
     # variables declaration
     port = 17  # Default QOTD port
     ip_host = b"192.168.42.69"  # Server's ip
