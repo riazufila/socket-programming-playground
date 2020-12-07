@@ -1,25 +1,25 @@
 #!/usr/bin/env python
 
 import socket
-from multiprocessing import Pool
+import multiprocessing
 from datetime import datetime
 
 
-def main():
-    PORT = 17  # Set default port for QOTD
-
-    # Create socket
+def socket_creation_bind(PORT):
     try:
         SOCKET = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     except socket.error as socket_error:
         print("Socket failed to create with error %s" % (socket_error))
 
-    # Bind socket
     try:
         SOCKET.bind(('', PORT))
     except socket.error as socket_error:
         print("Socket failed to bind with error %s" % (socket_error))
 
+        return SOCKET
+
+
+def socket_listen(SOCKET):
     while SOCKET:
         # Check for new day
         day = datetime.now()
@@ -55,6 +55,18 @@ def main():
             print("Sent Quote to %s" % (str(addr[0])))
         except socket.error as socket_error:
             print("Socket failed to send data with error %s" % (socket_error))
+
+
+def main():
+    """ Main function """
+    # Variables declaration
+    PORT = 17  # Set default port for QOTD
+
+    # Create socket and bind
+    SOCKET = socket_creation_bind(PORT)
+
+    # Socket listening
+    socket_listen(SOCKET)
 
 
 if __name__ == '__main__':
