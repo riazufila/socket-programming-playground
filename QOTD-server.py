@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import socket
-import multiprocessing
+import threading
 from datetime import datetime
 
 
@@ -24,10 +24,14 @@ def socket_operation(SOCKET):
             MSG = get_quote(day)
 
             # Send QOTD to client
-            SOCKET.sendto(MSG, addr)
-            print("Sent Quote to %s" % (str(addr[0])))
+            threading.Thread(target=send_msg, args=(SOCKET, MSG, addr)).start()
         except socket.error as socket_error:
             print("Socket failed to send data with error %s" % (socket_error))
+
+
+def send_msg(SOCKET, MSG, addr):
+    SOCKET.sendto(MSG, addr)
+    print("Sent Quote to %s" % (str(addr[0])))
 
 
 def get_quote(day):
