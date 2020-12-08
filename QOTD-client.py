@@ -7,7 +7,7 @@ def main():
     """ Main function """
     # variables declaration
     port = 17  # Default QOTD port
-    ip_host = b"192.168.42.69"  # Server's ip
+    ip_host = b"192.168.12.34"  # Server's ip
     msg = b"Let me in!"
 
     # Create socket
