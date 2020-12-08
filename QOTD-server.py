@@ -24,6 +24,7 @@ def socket_operation(SOCKET):
             MSG = get_quote(day)
 
             # Send QOTD to client
+            # Threading to allow multiple clients at the same time
             threading.Thread(target=send_msg, args=(SOCKET, MSG, addr)).start()
         except socket.error as socket_error:
             print("Socket failed to send data with error %s" % (socket_error))
