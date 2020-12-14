@@ -14,6 +14,7 @@ if __name__ == '__main__':
     sym_key = b'db81nHBk-RcQ_-zSMcWdCEuH53LUX1PFiCA_2R7CKK8='
 
     # Window's layout
+    sg.theme('Dark Blue 9')
     layout = [[sg.Text("Do you want to receive the quote of the day?")],
               [sg.Button("Yes"), sg.Button("No")]]
 
