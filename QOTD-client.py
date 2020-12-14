@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 
+import sys
 import socket
 from cryptography.fernet import Fernet
+import PySimpleGUI as sg
 
 
 if __name__ == '__main__':
@@ -10,6 +12,23 @@ if __name__ == '__main__':
     ip_host = b"192.168.12.34"  # Server's ip
     msg = b"Let me in!"
     sym_key = b'db81nHBk-RcQ_-zSMcWdCEuH53LUX1PFiCA_2R7CKK8='
+
+    # Window's layout
+    layout = [[sg.Text("Do you want to receive the quote of the day?")],
+              [sg.Button("Yes"), sg.Button("No")]]
+
+    # Window creation
+    window = sg.Window("Question of the Day", layout)
+
+    # Interact with the window
+    while True:
+        event, values = window.read()
+
+        if event == sg.WINDOW_CLOSED or event == 'No':
+            sys.exit()
+
+        if event == 'Yes':
+            break
 
     # Create socket
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -26,3 +45,19 @@ if __name__ == '__main__':
 
     # Print out the quote
     print("QOTD: %s" % (de_msg.decode("utf-8")))
+
+    # Window's layout
+    layout = [[sg.Text(size=(128, 5), key='-OUTPUT-')],
+              [sg.Button("Quit")]]
+
+    # Window creation
+    window = sg.Window("Quote of the Day", layout, finalize=True)
+
+    # Interact with the window
+    window['-OUTPUT-'].update(de_msg.decode("utf-8"))
+
+    while True:
+        event, values = window.read()
+
+        if event == sg.WINDOW_CLOSED or event == 'Quit':
+            sys.exit()
