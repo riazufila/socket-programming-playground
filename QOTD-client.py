@@ -47,7 +47,19 @@ if __name__ == '__main__':
     print("QOTD: %s" % (de_msg.decode("utf-8")))
 
     # Window's layout
-    layout = [[sg.Text(size=(128, 5), key='-OUTPUT-')],
+    quote_size = len(de_msg)
+    counter = 1
+
+    while quote_size >= 50:
+        if quote_size == 50:
+            counter = 1
+            break
+        else:
+            while quote_size > 50:
+                quote_size = quote_size % 50
+                counter = counter + 1
+
+    layout = [[sg.Text(size=(50, counter), key='-OUTPUT-')],
               [sg.Button("Quit")]]
 
     # Window creation
