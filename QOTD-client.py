@@ -3,8 +3,7 @@
 import socket
 
 
-def main():
-    """ Main function """
+if __name__ == '__main__':
     # variables declaration
     port = 17  # Default QOTD port
     ip_host = b"192.168.12.34"  # Server's ip
@@ -19,7 +18,3 @@ def main():
     # Receive datagram from Server
     data, addr = s.recvfrom(512)  # 512 bytes as recommended in RFC
     print("QOTD: %s" % (data.decode("utf-8")))
-
-
-if __name__ == '__main__':
-    main()
