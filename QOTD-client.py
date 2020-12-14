@@ -25,4 +25,4 @@ if __name__ == '__main__':
     de_msg = en_type.decrypt(data)
 
     # Print out the quote
-    print("QOTD: %s" % (data.decode("utf-8")))
+    print("QOTD: %s" % (de_msg.decode("utf-8")))
