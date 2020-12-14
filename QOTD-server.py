@@ -52,9 +52,9 @@ if __name__ == '__main__':
         try:
             print("Ready to receive connections..")
             # based on RFC for QOTD Protocol the size must not exceed 512 bytes
+            # Data received is discarded
             data, addr = SOCKET.recvfrom(512)
             print("Connection established from %s" % str(addr[0]))
-            # Data received is discarded
         except socket.error as socket_error:
             print("Socket failed to receive data with error %s" % (socket_error))
 
@@ -62,7 +62,7 @@ if __name__ == '__main__':
             # Get QOTD
             MSG = get_quote(day)
 
-            # Send QOTD to client
+            # Send quote to client
             # Threading to allow multiple clients at the same time
             threading.Thread(target=send_msg, args=(SOCKET, MSG, addr)).start()
         except socket.error as socket_error:
