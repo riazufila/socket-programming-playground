@@ -17,15 +17,15 @@ def process_start(s_sock):
         data = s_sock.recv(2048).decode("utf-8").split(":")
 
         if data[0] == "L":
-            result = math.log(data[1])
+            result = math.log(float(data[1]))
         elif data[0] == "S":
-            result = math.sqrt(data[1])
+            result = math.sqrt(float(data[1]))
         elif data[0] == "E":
-            result = math.exp(data[1])
+            result = math.exp(float(data[1]))
         else:
             break
 
-        s_sock.sendall(str.encode(result))
+        s_sock.sendall(str.encode(str(result)))
     s_sock.close()
 
 
