@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 
 import socket
-import sys
 import json
 
 mydata = {"id": 505012, "name": "Azizi", "age": "29"}
 sendData = json.dumps(mydata)
 
 s = socket.socket()
-print("SockeT successfully created")
+print("Socket successfully created")
 
 port = 8080
 
@@ -26,4 +25,4 @@ while True:
     buffer = c.recv(1024)
     print(buffer)
 
-c.close()
+    c.close()

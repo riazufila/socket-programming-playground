@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
-import sys
 import socket
+import sys
 
 ClientSocket = socket.socket()
-host = '127.0.0.1'
+host = "127.0.0.1"
 port = 8888
 
 print("Waiting for connection")
@@ -17,14 +17,15 @@ Response = ClientSocket.recv(1024)
 print(Response)
 while True:
     Input = input(
-        'Choose mathematical function, [L]ogarithmic, [S]quare Root, or [E]xponential. Enter only the first capital letter or [Q] to quit: ')
+        "Choose mathematical function, [L]ogarithmic, [S]quare Root, or [E]xponential. Enter only the first capital letter or [Q] to quit: "
+    )
 
-    if Input == 'L' or Input == 'S' or Input == 'E':
+    if Input == "L" or Input == "S" or Input == "E":
         value = input("Enter a value: ")
         Input = Input + ":" + value
 
         ClientSocket.send(str.encode(Input))
-    elif Input == 'Q':
+    elif Input == "Q":
         print("Quiting app.")
         ClientSocket.send(str.encode(Input))
         sys.exit()
@@ -35,4 +36,4 @@ while True:
     Response = ClientSocket.recv(1024)
     print(Response.decode("utf-8"))
 
-ClientSocket.close()
+    ClientSocket.close()

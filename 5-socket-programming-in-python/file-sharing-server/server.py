@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 
 import socket
+
 from Crypto.Cipher import AES  # Library for encryption
+
 
 # Decryption
 def decrypt(encrypted_data):
@@ -13,7 +15,7 @@ def decrypt(encrypted_data):
 
 s = socket.socket()  # Socket creation
 PORT = 4545  # Port defined
-s.bind(('', PORT))  # Binding socket
+s.bind(("", PORT))  # Binding socket
 s.listen(10)  # Socket waits for connections
 
 while True:
