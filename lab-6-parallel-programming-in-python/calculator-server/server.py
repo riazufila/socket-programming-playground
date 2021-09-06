@@ -2,13 +2,10 @@
 
 import math
 import socket
-import sys
-import time
-import errno
 from multiprocessing import Process
 
-ok_message = 'HTTP/1.0 200 OK\n\n'
-nok_message = 'HTTP/1.0 404 Not Found\n\n'
+ok_message = "HTTP/1.0 200 OK\n\n"
+nok_message = "HTTP/1.0 404 Not Found\n\n"
 
 
 def process_start(s_sock):
@@ -29,9 +26,9 @@ def process_start(s_sock):
     s_sock.close()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.bind(('', 8888))
+    s.bind(("", 8888))
     print("Listening...")
     s.listen(3)
 

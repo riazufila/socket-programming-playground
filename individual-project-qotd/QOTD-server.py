@@ -3,12 +3,13 @@
 import socket
 import threading
 from datetime import datetime
+
 from cryptography.fernet import Fernet
 
 
 def encrypt_msg(MSG):
     # Encrypt with predefined key
-    sym_key = b'db81nHBk-RcQ_-zSMcWdCEuH53LUX1PFiCA_2R7CKK8='
+    sym_key = b"db81nHBk-RcQ_-zSMcWdCEuH53LUX1PFiCA_2R7CKK8="
     en_type = Fernet(sym_key)
     en_msg = en_type.encrypt(MSG)
 
@@ -28,6 +29,7 @@ def get_quote(day):
     day_differences = str(day_differences)
     day_differences = day_differences.split(" ")[0]
     day_diff_len = len(day_differences)
+    MSG = ""
 
     if day_diff_len == 1:
         MSG = f.readline().encode("utf-8")
@@ -39,7 +41,7 @@ def get_quote(day):
     return MSG
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
     # Variables declaration
     PORT = 17  # Set default port for QOTD
@@ -51,7 +53,7 @@ if __name__ == '__main__':
         print("Socket failed to create with error %s" % (socket_error))
 
     try:
-        SOCKET.bind(('', PORT))
+        SOCKET.bind(("", PORT))
     except socket.error as socket_error:
         print("Socket failed to bind with error %s" % (socket_error))
 

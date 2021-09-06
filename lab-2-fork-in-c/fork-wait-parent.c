@@ -5,11 +5,11 @@
 #include <unistd.h>
 
 void childTask() {
-    printf("Salam, saya anak tau\n");
+    printf("Hello, I'm the child.\n");
 }
 
 void parentTask() {
-    printf("Dan saya adalah bapaknya\n");
+    printf("And I am the parent\n");
 }
 
 int main(void) {

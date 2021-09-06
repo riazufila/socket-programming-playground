@@ -10,7 +10,7 @@ s.connect(('192.168.8.112', port))
 
 data = s.recv(1024)
 
-s.send(b'Hi, saya client. Terima kasih!')
+s.send(b'Hello, I am the client!')
 
 print(data)
 

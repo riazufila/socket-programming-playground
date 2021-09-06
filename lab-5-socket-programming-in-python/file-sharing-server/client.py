@@ -2,6 +2,7 @@
 
 import os
 import socket
+
 from Crypto.Cipher import AES  # Encryption module
 
 # Encryption process
@@ -16,8 +17,7 @@ def encryption(data):
 
 IP = "192.168.42.198"
 PORT = 4545
-FILE = input(
-    "Enter the filename (must be in the same directory) to send to server: ")
+FILE = input("Enter the filename (must be in the same directory) to send to server: ")
 FILESIZE = os.path.getsize(FILE)
 
 # Socket creation
@@ -33,7 +33,7 @@ s.send(FILE.encode("utf-8"))
 
 # Padding
 length = 16 - (len(SendData) % 16)
-SendData += bytes([length])*length
+SendData += bytes([length]) * length
 
 SendData = encryption(SendData)
 
@@ -43,4 +43,4 @@ while SendData:
     SendData = file.read(1024)
     SendData = encryption(SendData)
 
-s.close()
+    s.close()
